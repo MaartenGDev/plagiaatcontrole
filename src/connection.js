@@ -1,4 +1,6 @@
 class Connection{
-  let test;
-
+  connect(){
+   console.log('connecting');
+  } 
 }
+export default Connection;
