@@ -1,0 +1,4 @@
+class Connection{
+  let test;
+
+}
