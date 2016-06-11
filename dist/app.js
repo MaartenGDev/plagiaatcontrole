@@ -1,30 +1,70 @@
-"use strict";
+class Api{
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	constructor(connection){
+		this.connection = connection;
+	}
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	getFolders(){
+		let connection = this.connection;
+		return connection.request('/');
+	}
 
-var Api = function Api() {
-  _classCallCheck(this, Api);
-};
+}
 
-var Connection = function () {
-  function Connection() {
-    _classCallCheck(this, Connection);
+class AjaxRequest{
+	constructor(url){
+		
+		let httpRequest = new XMLHttpRequest();
+		
+		return new Promise(function(resolve,reject){
+		
+			
+			if (!httpRequest) {
+			    return reject('Could not create ajax request');
+			}
+			
+			httpRequest.onreadystatechange = function(){
+	
+		   	if (httpRequest.readyState === XMLHttpRequest.DONE) {
+				if (httpRequest.status === 200) {   	
+					resolve(httpRequest.responseText);
+				}
+			} 	
+			
+			};
+			// Send Request
+			httpRequest.open('GET', url);
+			
+			httpRequest.send();
+	});
+	}
+}
+
+class Connection{
+  
+  connect(){
+
   }
+  request(url){
+	return new Promise(function(resolve,reject){
+		// Todo: Handle default urls for onedrive
+		
+		var request = new AjaxRequest(url);
+		request.then(function(data){
+		 resolve(data);
+		});
 
-  _createClass(Connection, [{
-    key: "connect",
-    value: function connect() {
-      console.log('connecting');
-    }
-  }]);
+	});
+  } 
 
-  return Connection;
-}();
+}
 
-console.log("hello world 11. it works!?");
-console.log(new Connection());
 var connection = new Connection();
-connection.connect();
-console.log(new Api());
+
+var api = new Api(connection);
+
+var folders = api.getFolders();
+
+folders.then(function(data){
+  console.log('done ' + data);
+});
