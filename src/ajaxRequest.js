@@ -1,3 +1,5 @@
+import Config from './config';
+
 class AjaxRequest{
 	constructor(url){
 		
@@ -11,10 +13,10 @@ class AjaxRequest{
 			}
 			
 			httpRequest.onreadystatechange = function(){
-	
+				
 		   	if (httpRequest.readyState === XMLHttpRequest.DONE) {
 				if (httpRequest.status === 200) {   	
-					resolve(httpRequest.responseText);
+					resolve(JSON.parse(httpRequest.responseText));
 				}
 			} 	
 			
@@ -22,6 +24,7 @@ class AjaxRequest{
 			// Send Request
 			httpRequest.open('GET', url);
 			
+			httpRequest.setRequestHeader("Authorization","bearer "+ Config.token);
 			httpRequest.send();
 	});
 	}

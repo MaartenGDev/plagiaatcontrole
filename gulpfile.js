@@ -10,8 +10,8 @@ gulp.task('watch',function(){
 
 gulp.task('bundle', function(){
 	gulp.src('src/app.js')
-		.pipe(babel())
-       		.pipe(rollup())	
+       		.pipe(rollup())
+		.pipe(babel())	
        		.pipe(concat('app.js'))	
 		.pipe(gulp.dest('dist'));
 });
