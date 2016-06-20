@@ -21,10 +21,10 @@ class AjaxRequest{
 			} 	
 			
 			};
-			// Send Request
+			// *Send Request
 			httpRequest.open('GET', url);
 			
-			httpRequest.setRequestHeader("Authorization","bearer "+ Config.token);
+			httpRequest.setRequestHeader("token",Config.token);
 			httpRequest.send();
 	});
 	}

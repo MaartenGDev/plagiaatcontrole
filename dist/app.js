@@ -1,7 +1,5 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19,6 +17,21 @@ var Api = function () {
 			return this.connection.request('drive/root/children');
 		}
 	}, {
+		key: 'openFolder',
+		value: function openFolder(id) {
+			return this.connection.request('drive/items/' + id + '/children');
+		}
+	}, {
+		key: 'openFile',
+		value: function openFile(id) {
+			console.log('open bestand' + id);
+		}
+	}, {
+		key: 'getPercentage',
+		value: function getPercentage(id, content) {
+			return this.connection.request('file/' + id + '/content/' + content);
+		}
+	}, {
 		key: 'search',
 		value: function search(keyword) {
 			return this.connection.request('drive/root/view.search?q=' + keyword);
@@ -29,8 +42,8 @@ var Api = function () {
 }();
 
 var Config = {
-	api: 'https://api.onedrive.com/v1.0/',
-	token: 'EwBwAq1DBAAUGCCXc8wU/zFu9QnLdZXy+YnElFkAARJGk3n+7pSW4qJY3ksjQKigWnnc7A3/ywAtztkvW5K2lzjoYS4Tnwpohn9RGHJVBnV00/fUJ8wNJ8mHiULuszGUUYY9bwNU2j2WXF1vZqZJqOSCKAIg4RpSVo1plrEeo/eHQ413hN2Z4RpkXP+6oiTEg9qTPeh3eWjlrU/Lqj2BhVepH83LWEGA9jOGm94Ozy0qRqQImdOXhqLX7ZpJZamkyVmSaEq9ZzPDqrmIZ62TrwBXdcs2XDEl7SPGGnYS7ZvhkUj5pfWzJEmN2RK2EOeELtFt6Rd+d4hNa03M0jzwKjMR9M8kJcnoq+ZNBmLFG66aBcrQrW95/LIV8CmMbHcDZgAACAwX4hk85spHQAGoehYpIleeacHyEn+ITiy6oFhCSIeTNX1wGJ5zUr0rahNQiKUdFFY6YO7PiHe7rZ0m0Am+/LryOa/FTiqg/N9hLMRgBLOQ9e9oA8nSBzsvMG4obvqnGP7gP7GIi68lJfpWRc3Zt802+5JDMFg26yCn0FHIJBYPl4Uktkge13nKzc2rHwyfbaGTlQqPvH2o7bF+ls5l3riwdSJV/2An2atvwmOjbmHue/mjQs8uT4tslhSZk0ZgY3JI4WeSVfhOivWvmW0GaH/GPJ7akNr0XXKt9Dzx7N+MzhyQHZhEy91iuMWF8J3OSXlFPCfzGCTtmz4QTwf8JKNJ4pxISVpZ+Uxqi6xjUNestLiTpse47lHgfWfY2AuT3SylJnIKInIFo76v9gfiFhN4z3yQqtPT+zinfsTzdaIg8HYme2Rg8tyQjXcB'
+	api: 'http://fast.dev/',
+	token: 'EwBwAq1DBAAUGCCXc8wU/zFu9QnLdZXy+YnElFkAATK2UswVIpEISoOWcvh8MaZcwQLGlzO9gtlHxtdw3RobVWy6nPAwKX9APdwy/oYwfyPOVg1rgrwoyj91wWE4Ja2uR+aDIntwGV5yJIW2BQAD71ohBCJnptNxs06x+vDbTE+BMVQcot3GikSYDsGn/woezvv3eabbgaso6PV/NZsaJUfmHIXAUaDwMXDl1Sr2hZYx5kYycp/V9tXqtjyQL1IWKEQrci4fewbajndOoqq98fVf0OvXTKOLYajyclfE5iCBwjz7cDHwVK54hXHkk/eLkwYttnYQnwkcTn7OtWwR49GJ1MryfpYhFLoG/54J3fN/mU3pX+jjxPFzRhgq0xEDZgAACKzSQK5DN+wLQAEAKkXIEZk7Ts7XzDX4QI2vPaxdJs6PxjQHoNmO4JWKRcfYuha0crkgp8JEdE1tpIq1fgHNOv6I5qj0REBfy+p1VIjbYfV6MBsplTu0ZTQpmp5ktRAVGyW+7R3lZzCH9EYkzjqCLH+AMqa+WnHeaSM7CCYULnsZc3/9IwGlve+uL8KTRC6TYZPCt+CqU/q5VW87Add8030qkB8VI6+Xf3t/NNmA/c8Ez/ibyiLsPg0SNw3jHd2+xj9Ea2elaSlpaJamHjrmJjOWr+665hCEikxi2z2jnhSBw+tP2uEh+t2EQDsKCXNuG70uts3swWnJfWtwOwutDDJ2aqCO7IsGgMqf7XecfTWax6HmKkWTt4lqxm04GXl0YobjQdyrtCTtetr87h5Tz05Gpe/vSfBHNFHeZ2PFr12JpxDLxBXVveSeencB'
 };
 
 var AjaxRequest = function AjaxRequest(url) {
@@ -52,10 +65,10 @@ var AjaxRequest = function AjaxRequest(url) {
 				}
 			}
 		};
-		// Send Request
+		// *Send Request
 		httpRequest.open('GET', url);
 
-		httpRequest.setRequestHeader("Authorization", "bearer " + Config.token);
+		httpRequest.setRequestHeader("token", Config.token);
 		httpRequest.send();
 	});
 };
@@ -76,7 +89,6 @@ var Connection = function () {
 			return new Promise(function (resolve, reject) {
 				// Todo: Handle default urls for onedrive
 				var request = new AjaxRequest(Config.api + url);
-
 				request.then(function (data) {
 					resolve(data);
 				});
@@ -88,27 +100,52 @@ var Connection = function () {
 }();
 
 var Client = function () {
-	function Client() {
+	function Client(api) {
 		_classCallCheck(this, Client);
 
+		this.api = api;
 		this.module = document.querySelector('.module');
 	}
 
 	_createClass(Client, [{
-		key: 'append',
-		value: function append(items) {
-			var attribute = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+		key: 'showFolder',
+		value: function showFolder(id) {
+			var _this = this;
+
+			var items = this.api.openFolder(id);
+
+			items.then(function (data) {
+				return _this.appendList(data.value);
+			});
+		}
+	}, {
+		key: 'appendList',
+		value: function appendList(items) {
+
+			if (typeof this.lastParent != 'undefined') {
+				items.unshift(this.lastParent);
+				this.lastParent = items[1];
+			}
 
 			var list = document.createElement('ul');
-
 			items.forEach(function (item) {
-				console.log(typeof attribute === 'undefined' ? 'undefined' : _typeof(attribute));
 				var listItem = document.createElement('li');
-				var itemValue = attribute != false ? item[attribute] : item;
-				listItem.appendChild(document.createTextNode(itemValue));
+				var link = document.createElement('a');
 
+				link.href = '#';
+
+				link.innerHTML = item['name'];
+				// Check if it's a folder.
+				if (item.hasOwnProperty('folder')) {
+					link.setAttribute('onclick', 'client.showFolder(\'' + item.id + '\')');
+				} else {
+					link.setAttribute('onclick', 'client.openFile(2)');
+				}
+
+				listItem.appendChild(link);
 				list.appendChild(listItem);
 			});
+			this.module.innerHTML = '';
 			this.module.appendChild(list);
 		}
 	}]);
@@ -116,14 +153,16 @@ var Client = function () {
 	return Client;
 }();
 
-var client = new Client();
-
 var connection = new Connection();
 
 var api = new Api(connection);
 
-var folders = api.getFolders();
+var client = new Client(api);
 
-folders.then(function (data) {
-	client.append(data.value, 'name');
+var content = 'Scrum is een flexibele manier om (s0ftware)producten te maken. Er wordt gewerkt in';
+
+var percentage = api.getPercentage('87B8378140BF8085!116', content);
+
+percentage.then(function (data) {
+	console.log(data);
 });

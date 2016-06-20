@@ -10,7 +10,6 @@ class Connection{
 	return new Promise(function(resolve,reject){
 		// Todo: Handle default urls for onedrive
 		var request = new AjaxRequest(Config.api + url);
-
 		request.then(function(data){
 		 resolve(data);
 		});
